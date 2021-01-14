@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1{
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                outline: none;
+                color: rgb(46, 146, 91);   
+                margin: 20px auto; 
+
+            }
+            h3{
+                text-align:center; 
+
+            }
+            .btn{
+                
+                display:block; 
+                text-align:center; 
+                padding: 10px 25px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                margin:15px 0; 
+                background-color: rgb(56, 194, 141);
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+            }
+            body{
+                width: 600px;
+                margin: 150px auto;
+                background-color: rgb(255,255,255);
+                padding : 0px 20px 90px 20px;
+                border: 5px solid green;
+            }
+            .label{
+                cursor: pointer; 
+                text-align: center;
+                margin: 20px 60px 10px 30px;
+            }
+            .label2{
+                margin: auto -20px auto 40px;
+            }
+           
+    
+  
+        </style>
+    </head>
+<body>
+    <h1>전시회 리뷰 작성과 예매 페이지</h1>
+    <h3>*** 로그인 후 이용이 가능합니다. ***</h3>
+    <ul class="label">
+         <label class="label1" for="name">로그인 하시겠습니까?  </label>
+         <label class="label2" for="name">회원가입을 하시겠습니까?  </label>
+
+    </ul>
+        <form action="/login" method = 'POST'>
+
+        <div style=" float:left; margin: 0px 130px;">
+            <button class="btn button1" type="submit">Login</button>
+        </div>
+    </form>
+    <form action="/assign" method = 'POST'>
+
+        <div style="float:left;">
+
+            <button class="btn button2" type="submit">sign up</button>
+        </div>
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script type="text/javascript">
+            alert("{{messages[-1]}}");
+        </script>
+    {% endif %}
+    {% endwith %}
+    
+</body>
+</html>

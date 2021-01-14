@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            table{
+                margin: auto; border: solid; border-collapse: collapse;margin-top: 2%;
+            }
+            td{padding: 20px; text-align: center;border: solid;border-width: 1px;}
+            h1{
+                padding:auto;
+                text-align:center;
+                margin-top: 3%;
+            }
+            p{
+                text-align:center;
+                margin: auto;
+            }
+            button{
+                margin:10px auto;
+                display:block; 
+                text-align:center; 
+                padding: 10px 25px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                background-color: rgb(56, 194, 141);
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>회원 정보 조회</h1>
+        <table class="1">
+        {% for i in datas %}
+            <tr>
+                <td style="font-weight: bold;">ID</td>
+                <td>{{i.ID}}</td>
+                
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">이름</td>
+                <td>{{i.uName}}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">생년월일</td>
+                <td>{{i.birthday}}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">전화번호</td>
+                <td>0{{i.phoneNumber}}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">e-mail</td>
+                <td>{{i.eMail}}</td>
+            </tr>
+
+        {% endfor %}
+        </table>
+    
+
+        <form action="{{url_for('modify',ID5=ID3)}}" method="POST">
+            <button type="submit">수정</button>
+        </form>
+        
+        
+
+
+        <br><br><hr width="50%"><br><br>
+        <form action="{{url_for('user_delete',ID4=ID3)}}" method = 'POST'>
+            <p>회원 탈퇴하시겠습니까? </p>
+            <button type="submit">탈퇴</button>
+            
+        </form>
+        <form action="{{url_for('showexhib',ID=ID3)}}" method = 'POST'>
+            <br><button type="submit" value="return">돌아가기</button>
+
+        </form>
+    </body>
+</html>

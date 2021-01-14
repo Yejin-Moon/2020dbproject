@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        table{
+            padding: 10%;
+            border-collapse: collapse;
+            margin: auto;
+        }
+        td{padding: 30px;border: solid black;border-width: 0.5px;}
+        button[value="return"],[value="Cancle"]{
+            display:block; 
+                padding: 10px 10px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                margin:-50px 0px 10px 1270px; 
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+                margin: auto;
+        }
+        h1{
+            margin-left: 18%;
+        }
+        h3{
+            margin-left: 18%;
+        }
+        button[value="cancle"]{
+            display:block; 
+                padding: 10px 10px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                margin:-50px 0px 10px 1270px; 
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+       
+        }
+    </style>
+    <body>
+        <h1>예매 기록 조회</h1>
+        <title >예매 사이트</title>
+        {% if t_count %}
+        {% for i in users %}
+        {% for j in t_count %}
+        <h3><{{i.uName}} ({{i.ID}}) 님의 총 {{j}}건의 예매 기록 내역입니다></h3>
+        {% endfor %}
+        {% endfor %}
+        <table>
+            {% for i in view %}
+            <tr>
+                
+                <td>
+                <form method = 'POST'>
+                
+                <a href="{{url_for('detail_info', e=i.eID, ID3 = ID0)}}">{{i.eName}}</a></p>
+                </td>
+                <td style="border-right: hidden;">
+                    <a style="font-weight: bold; font-size: 17px;">예매 정보</a>
+                    <hr><a>어린이 : {{i.childNum}} 명</a><br>
+        <a>청소년 : {{i.teenNum}} 명</a><br>
+        <a>성인&nbsp;&nbsp;&nbsp; : {{i.adultNum}} 명</a> <br>
+                </td>
+                <td>
+        <br><br><a> &bull; 티켓 수령 방법 : {{i.delivery}}</a><br><br>
+        <a> &bull; 총 금액 : {{i.totalPrice}}</a>
+                </td>
+                <td>
+                </form>
+                <form action="{{url_for('cancel',e=i.eID,ID1=ID0)}}" method = 'POST'>
+                    <button type="submit" value="Cancle">Cancle</button>
+        
+                </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        {%else%}
+        <h3>예매 정보가 없습니다.</h3>
+        {% endif %}
+
+        <form action="{{url_for('showexhib',ID=ID0)}}" method = 'POST'>
+            <br><button type="submit" value="return">돌아가기</button>
+
+        </form>
+     
+    </body>
+</html>

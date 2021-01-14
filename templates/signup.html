@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script type="text/javascript">
+                alert("{{messages[-1]}}");
+            </script>
+        {% endif %}
+        {% endwith %}
+        <style>
+            h1{
+                padding:auto;
+                text-align:center;
+            }
+            a{
+                font-weight: bold;
+                display:table;
+                width:200px;
+                padding:10px;
+                text-align:center;
+                margin:auto;
+            }
+            input[name='Name'],input[name='uid'],input[name='pw'],input[name='phone'],input[name='birth'],input[name='email']{
+                font-size: 15px;
+                width: 300px;
+                height: 30px;
+                vertical-align: middle;
+                border: 4px solid #11754f;
+                border-radius: 10px;
+                padding: 0 20px 10px 20px;
+                margin: 0 auto;
+                text-align:center;
+            }
+            .b1{
+                margin:-65px 0px 0px 800px ;
+
+                display:block; 
+                text-align:center; 
+                padding: 6px 20px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                background-color: rgb(56, 194, 141);
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+            
+
+            }
+            .b2
+            {
+                margin:auto 600px ;
+
+                display:block; 
+                text-align:center; 
+                padding: 8px 20px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                background-color: rgb(56, 194, 141);
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+            
+                text-align:center; 
+            }
+        </style>
+    </head>
+<body>
+    <h1>회원가입</h1>
+
+    <form action="{{url_for('save_users')}}" method = 'POST'>
+        <a>Name <input type = 'text', name = 'Name'></a>
+        <a>ID <input type = 'text', name = 'uid'></a>
+        <a>PW <input type = 'password', name = 'pw'></a>
+        <a>생년월일 <input type = 'int', name = 'birth' placeholder="예) 991226" maxlength="6"></a>
+        <a>Phone number <input type = 'int', name = 'phone'maxlength="11" ></a>
+        <a>e-mail <input type = 'email', name = 'email'></a>
+        
+        <button class="b2" type="submit">submit</button>
+    </form>
+    <form action="{{url_for('first_page',flag=0)}}" method = 'POST'>
+        <br><button class = "b1"type="submit" value="return">돌아가기</button>
+    </form>
+</body>
+</html>

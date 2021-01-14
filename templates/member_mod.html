@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            table{
+                margin: auto; border: solid; border-collapse: collapse;margin-top: 2%;
+            }
+            td{padding: 20px; text-align: center;border: solid;border-width: 1px;}
+            h1{
+                padding:auto;
+                text-align:center;
+                margin-top: 3%;
+            }
+            button{
+                margin:10px auto;
+                display:block; 
+                text-align:center; 
+                padding: 10px 25px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                background-color: rgb(56, 194, 141);
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+            }
+            a{
+                color: brown;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="{{url_for('modifyAccept',ID6=ID3)}}" method="POST">
+            <h1>회원 정보 수정</h1>
+        <table class="2">
+            <tr>
+                <td style="font-weight: bold;">ID</td>
+                <td>{{ID3}}</td>
+                
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">이름</td>
+                <td><input type="text", name="uname"></td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">생년월일</td>
+                <td><input type="text", name="birth" maxlength="6"></td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">전화번호</td>
+                <td><input type="text", name="phone" maxlength="11"></td>
+            </tr>
+            <tr>    
+                <td style="font-weight: bold;">e-mail</td>
+                <td><input type="text", name="email"></td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Password</td>
+                <td><input type="password", name="pw">
+                <br><a>비밀번호가 일치하지 않을 시, <br>회원 정보가 수정되지 않습니다.</a></td>
+            </tr>
+        
+        </table>
+            <button type="submit">확인</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script type="text/javascript">
+                alert("{{messages[-1]}}");
+            </script>
+        {% endif %}
+        {% endwith %}
+    </body>

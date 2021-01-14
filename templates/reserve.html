@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var cp='{{ra}}';
+            var tp='{{rb}}';
+            var ap='{{rc}}';
+        </script>
+        <style>
+            h1{
+                margin: 50px 200px 50px 400px;
+            }
+            table{
+                margin: auto;
+                border: solid;
+                border-collapse: collapse;
+            }
+            th{border: solid;background-color: rgb(204, 230, 219);}
+            td{border: dotted;text-align: center;}
+
+            a[class="total"]{
+                font-size: 20px;
+                font-weight: bolder;
+            }
+            a[class="birth"]{
+                color:rgb(196, 26, 26);;
+            }
+            a[class="name"],[class="bir"],[class="number"],[class="email"]{
+                font-weight: bold;
+            }
+            .btn1{
+                display:block; 
+                padding: 15px 15px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 2px 0px #999;
+                margin:-10px 0px 110px 800px; 
+            }
+            .btn2{
+                display:block; 
+                padding: 15px 15px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                margin:-50px 0px 10px 1270px; 
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+                margin:-170px 650px 0px 610px; 
+
+            }
+            p[class="people"],[class="ticket"]{
+                font-weight: bold;
+                font-size: 18px;
+                margin-top: 0%;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>티켓 예매</h1>
+
+        <table>
+            <th><p>인원수 / 수령 방법 선택</p></th>
+            <th><p>예매자 확인</p></th>
+            <tr>
+                <td>
+        <div style="float: left;padding:70px">
+        <form oninput = "result.value = parseInt(child.value)*cp+parseInt(teen.value)*tp+parseInt(adult.value)*ap+parseInt(ticket.value)" method = 'POST'>
+            <p class="people">&diams; 인원수 선택</p>
+            <a>어린이&nbsp;&nbsp;&nbsp;&nbsp;{{ra}}원 </a><select name = "child" id = "child_p">
+            <option value = "0">0명</option>
+            <option value = "1">1명</option>
+            <option value = "2">2명</option>
+            <option value = "3">3명</option>
+            <option value = "4">4명</option>
+            <option value = "5">5명</option>
+            <option value = "6">6명</option>
+            <option value = "7">7명</option>
+            <option value = "8">8명</option>
+            <option value = "9">9명</option>
+            <option value = "10">10명</option>
+            </select><br><br>
+    
+            <a>청소년&nbsp;&nbsp;&nbsp;&nbsp;{{rb}}원 </a><select name = "teen" id = "teen_p">
+            <option value = "0">0명</option>
+            <option value = "1">1명</option>
+            <option value = "2">2명</option>
+            <option value = "3">3명</option>
+            <option value = "4">4명</option>
+            <option value = "5">5명</option>
+            <option value = "6">6명</option>
+            <option value = "7">7명</option>
+            <option value = "8">8명</option>
+            <option value = "9">9명</option>
+            <option value = "10">10명</option>
+            </select><br><br>
+            <a>성인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{rc}}원 </a><select name = "adult" id = "adult_p">
+            <option value = "0">0명</option>
+            <option value = "1">1명</option>
+            <option value = "2">2명</option>
+            <option value = "3">3명</option>
+            <option value = "4">4명</option>
+            <option value = "5">5명</option>
+            <option value = "6">6명</option>
+            <option value = "7">7명</option>
+            <option value = "8">8명</option>
+            <option value = "9">9명</option>
+            <option value = "10">10명</option>
+            </select><br><br>
+    
+        <p class="ticket"> <br>&diams; 티켓 수령 방법 선택</p>
+        <input type = "radio" name = "ticket" value = "0" checked>현장 수령
+        <input type = "radio" name = "ticket" value = "2800">배송(2,800원)
+    </div> 
+</td>
+
+<td>
+    <div style="float: left;padding: 30px;text-align: left;">
+        
+        {% for i in userInfo %}
+        <a class="name">이름 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </a>{{i.uName}}<br><br>
+        <a class="bir">생년월일 :</a> <input type = text name = "birth" placeholder = "예) 991111">
+        <a class="birth"><br>(생년월일이 일치하지 않을 시 예매가 불가합니다.)</a><br><br>
+        <a class="number">연락처 &nbsp;&nbsp;&nbsp;: </a>0{{i.phoneNumber}}<br><br>
+        <a class="email">이메일 &nbsp;&nbsp;&nbsp;: </a>{{i.eMail}}<br>
+        {% endfor %}
+        
+       <br><br>
+       <hr class="price"><br>
+       <a class="total">총 결제 금액 : </a>  
+       <output name = "result" for="string" ></output><a> 원</a>
+    </div>
+</td>
+</tr>
+</table>
+
+       <br><br><input class=btn1 type = 'submit'value = '예매하기' formaction="{{url_for('reserve_accepct',ID8=ID7,e=eID)}}">
+        </form>
+
+        <form  action="{{url_for('detail_info',e=eID,ID3=ID7)}}" method = 'POST'>
+            <button class= btn2 type="submit">돌아가기</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script type="text/javascript">
+                alert("{{messages[-1]}}");
+            </script>
+        {% endif %}
+        {% endwith %}
+    </body>
+</html>

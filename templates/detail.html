@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            textarea{
+                margin:0px -10px 0px 160px;
+                font-size: 17px;
+            }
+            h1{
+                margin: 0px 20px 0px 200px;
+            }
+            h2{
+                margin: 0px 20px 0px 200px;
+            }
+        
+            table{
+                text-align:center;
+                margin:auto;
+                padding:3px;
+
+            }
+           
+            th{padding: 45px;font-size:40px}
+            td{border-bottom-style:solid;border-bottom-width:1px;padding:8px}
+      
+            .ex_btn{
+                display:block; 
+                padding: 7px 7px;
+                font-size: 15px;
+                border:rgb(95, 185, 151)outset;
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+
+            }
+         
+            button[class="button1"]{
+                display:block; 
+                padding: 20px 20px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                margin:-50px 0px 10px 1270px; 
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+            } 
+            button[class="button2"]{
+                display:block; 
+                padding: 20px 20px;
+                font-size: 20px;
+                border:rgb(95, 185, 151)outset;
+                margin:-5px 0px 10px 1270px; 
+                background-color: rgb(56, 194, 141);
+                text-align:center; 
+                cursor: pointer; 
+                color:rgb(255, 255, 255); 
+                transition:all 0.9s, color 0.3;
+                border-radius: 15px;
+                box-shadow: 2px 5px 5px 0px #999;
+                position: absolute;
+                left: -0px;
+                top: 665px;
+            } 
+       </style>
+    </head>
+    <body>
+        <form action="{{url_for('showexhib',ID=ID4)}}" method = 'POST'>
+            <button class= ex_btn type="submit">돌아가기</button>
+        </form>
+        <biv class= t>
+        <table class="ex">
+            {% for i in items %}
+            <p><th colspan="3" >{{i.eName}}</th></p>
+            <tr>
+                <td style="font-weight: bold;font-size:20px">
+                    장소
+                </td>
+                <td>
+                    {{i.place}}, {{i.room}}
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; font-size:20px">
+                    기간
+                </td>
+                <td>
+                    {{i.period}}
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;font-size:20px" rowspan="3">가격</td>
+                <td>어린이 : {{i.childPrice}} 원</td>
+            </tr>
+            <tr>
+              
+                <td>청소년 : {{i.teenPrice}} 원</td>
+            </tr>
+            <tr>
+               
+                <td>성인 &nbsp;&nbsp;&nbsp;: {{i.adultPrice}} 원</td>
+            </tr>
+        </biv>
+        </table>
+
+        <form action="{{url_for('reserve',ID6=ID4,e=i.eID)}}" method = 'POST'>
+            <div style="margin: 100px 200px 50px -530px;">
+                <button class="button1" type = "submit">예매하기</button>
+            </div>
+        </form>
+        
+        <hr class="two" width="80%">
+        <h1>Comment</h1>
+        <form action="{{url_for('comment', eID = i.eID,ID5=ID4)}}" method = 'POST'>
+            <ul>
+
+                <button class = "button2" type="submit">Upload</button>
+          
+                <textarea id="msg" name="user_message" style="resize:none"
+                placeholder="전시에 대한 한줄평을 적어주세요." cols="120" rows="3" margin="100px"></textarea>
+                
+            </ul>
+       </form>
+       
+       {% endfor %}
+       
+       <hr class="one" width="80%">
+       <h2>작성된 comment<br><br>
+        <div style="font-size: 15px; font-weight: lighter;">
+        
+        
+        {% for j in datas %}
+        <div style="font-weight: bold;width: 80%;">
+            &#187;
+            <a style="width: 70%;">
+                {{j.content }}
+            </a>
+        </div>
+        &nbsp;&nbsp;&nbsp;{{j.cName }} 
+        </br>
+        </br>
+        {% endfor %}
+        
+        </div>
+       </h2>
+        </body>
+</html>
